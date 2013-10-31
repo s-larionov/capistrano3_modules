@@ -9,3 +9,10 @@ Configure your capistrano3 config for use scm 'git_with_submodules':
 ```
 set :scm, :git_with_submodules
 ```
+
+# Don't forget
+remove README.md from production
+```
+cd /path/to/project
+rm capistrano/README.md
+```
