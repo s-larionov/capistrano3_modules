@@ -48,26 +48,12 @@ namespace :git_with_submodules do
     end
   end
 
-#  desc 'Copy repo to releases'
-#  task create_release: :'git:update' do
-#    on roles :all do
-#      with git_environmental_variables do
-#        within repo_path do
-#          execute :mkdir, '-p', release_path
-#          execute :git, :archive, fetch(:branch), '| tar -x -C', release_path
-#        end
-#      end
-#    end
-#  end
-
   desc 'Copy repo to releases'
   task create_release: :'git_with_submodules:update' do
     on roles :all do
       with git_environmental_variables do
         within repo_path do
           execute :git, :clone, "-b #{fetch :branch}", '--single-branch', '--recursive', '.', release_path
-          execute :git, :submodule, :foreach, :rm, "-f", ".git .gitignore .gitmodules"
-          execute :rm, "-f", ".git .gitignore .gitmodules"
         end
       end
     end
