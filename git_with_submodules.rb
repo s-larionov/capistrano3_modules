@@ -53,7 +53,7 @@ namespace :git_with_submodules do
     on roles :all do
       with git_environmental_variables do
         within repo_path do
-          execute :git, :clone, "-b #{fetch :branch}", '--single-branch', '--recursive', '.', release_path
+          execute :git, :clone, "-b #{fetch :branch}", '--recursive', '.', release_path
         end
       end
     end
